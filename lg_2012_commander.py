@@ -19,14 +19,27 @@ class MyDialog:
         self.e.pack(padx=5)
         self.e.focus_set()
         b = Button(top, text="Ok", command=self.ok)
-        b.pack(pady=5)
+        b.pack()
+        Label(top, text = "Remote Buttons:", justify="left").pack()
+        enterButton = Button(top, text="Enter", command=self.enterButton).pack()
+        homeButton = Button(top, text="Home", command=self.homeButton).pack()
+        exitButton = Button(top, text="Exit", command=self.exitButton).pack()
         top.bind("<Return>", self.ok)
-        top.title("Lg Commander")
-        top.geometry("410x280+10+10")
+        top.title("LG Commander")
+        top.geometry("+478+224")
     def ok(self,dummy=None):
         global result
         result = self.e.get()
+        #handleCommand(self.e.get())
+        #self.e.delete(0,END)
+        #self.e.insert(0,"")
         self.top.destroy()
+    def enterButton(self,dummy=None):
+        handleCommand('20')
+    def homeButton(self,dummy=None):
+        handleCommand('21')
+    def exitButton(self,dummy=None):
+        handleCommand('412')
 
 
 def getip():
